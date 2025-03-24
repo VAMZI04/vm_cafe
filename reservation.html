@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book a Table - VM Cafe</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">VM Cafe</div>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="menu.html">Menu</a></li>
+            <li><a href="reservation.html" class="active">Book a Table</a></li>
+        </ul>
+    </nav>
+
+    <div class="booking-container">
+        <div class="booking-header">
+            <h1>Book Your Table</h1>
+        </div>
+
+        <div class="booking-steps">
+            <div class="booking-step active" data-step="1">
+                <div class="step-number">1</div>
+                <div class="step-text">Date & Time</div>
+            </div>
+            <div class="booking-step" data-step="2">
+                <div class="step-number">2</div>
+                <div class="step-text">Select Table</div>
+            </div>
+            <div class="booking-step" data-step="3">
+                <div class="step-number">3</div>
+                <div class="step-text">Guest Details</div>
+            </div>
+            <div class="booking-step" data-step="4">
+                <div class="step-number">4</div>
+                <div class="step-text">Confirm</div>
+            </div>
+        </div>
+
+        <div class="booking-content">
+            <!-- Step 1: Date & Time Selection -->
+            <div class="booking-section active" id="step1">
+                <h2>Select Date & Time</h2>
+                <div class="date-time-grid">
+                    <!-- Dates will be dynamically generated -->
+                </div>
+                <h3>Available Time Slots</h3>
+                <div class="time-slots">
+                    <!-- Time slots will be dynamically generated -->
+                </div>
+            </div>
+
+            <!-- Step 2: Table Selection -->
+            <div class="booking-section" id="step2">
+                <h2>Select Your Table</h2>
+                <div class="tables-layout">
+                    <!-- Tables will be dynamically generated -->
+                </div>
+            </div>
+
+            <!-- Step 3: Guest Details -->
+            <div class="booking-section" id="step3">
+                <h2>Guest Information</h2>
+                <form class="guest-form" id="guestForm">
+                    <div class="form-group">
+                        <label for="name">Full Name</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Phone Number</label>
+                        <input type="tel" id="phone" name="phone" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="guests">Number of Guests</label>
+                        <select id="guests" name="guests" required>
+                            <option value="">Select number of guests</option>
+                            <option value="1">1 Person</option>
+                            <option value="2">2 People</option>
+                            <option value="3">3 People</option>
+                            <option value="4">4 People</option>
+                            <option value="5">5 People</option>
+                            <option value="6">6 People</option>
+                            <option value="7">7 People</option>
+                            <option value="8">8 People</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="special">Special Requests (Optional)</label>
+                        <textarea id="special" name="special" rows="3"></textarea>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Step 4: Confirmation -->
+            <div class="booking-section" id="step4">
+                <h2>Booking Summary</h2>
+                <div class="booking-summary">
+                    <div class="summary-item">
+                        <span class="summary-label">Date</span>
+                        <span class="summary-value" id="summaryDate"></span>
+                    </div>
+                    <div class="summary-item">
+                        <span class="summary-label">Time</span>
+                        <span class="summary-value" id="summaryTime"></span>
+                    </div>
+                    <div class="summary-item">
+                        <span class="summary-label">Table</span>
+                        <span class="summary-value" id="summaryTable"></span>
+                    </div>
+                    <div class="summary-item">
+                        <span class="summary-label">Guests</span>
+                        <span class="summary-value" id="summaryGuests"></span>
+                    </div>
+                    <div class="summary-item">
+                        <span class="summary-label">Name</span>
+                        <span class="summary-value" id="summaryName"></span>
+                    </div>
+                    <div class="summary-item">
+                        <span class="summary-label">Contact</span>
+                        <span class="summary-value" id="summaryContact"></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="booking-navigation">
+                <button class="nav-button prev" id="prevBtn" style="display: none;">Previous</button>
+                <button class="nav-button next" id="nextBtn">Next</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Current step tracking
+        let currentStep = 1;
+        const totalSteps = 4;
+
+        // Booking data
+        const bookingData = {
+            date: null,
+            time: null,
+            table: null,
+            name: '',
+            email: '',
+            phone: '',
+            guests: '',
+            special: ''
+        };
+
+        // Generate dates for the next 7 days
+        function generateDates() {
+            const dateGrid = document.querySelector('.date-time-grid');
+            const today = new Date();
+            
+            for (let i = 0; i < 7; i++) {
+                const date = new Date(today);
+                date.setDate(today.getDate() + i);
+                
+                const dateCard = document.createElement('div');
+                dateCard.className = 'date-card';
+                dateCard.innerHTML = `
+                    <div class="date-weekday">${date.toLocaleDateString('en-US', { weekday: 'short' })}</div>
+                    <div class="date-day">${date.getDate()}</div>
+                    <div class="date-month">${date.toLocaleDateString('en-US', { month: 'short' })}</div>
+                `;
+                
+                dateCard.addEventListener('click', () => selectDate(dateCard, date));
+                dateGrid.appendChild(dateCard);
+            }
+        }
+
+        // Generate time slots
+        function generateTimeSlots() {
+            const timeSlots = document.querySelector('.time-slots');
+            const slots = [
+                '11:00 AM', '11:30 AM', '12:00 PM', '12:30 PM', '1:00 PM',
+                '1:30 PM', '2:00 PM', '2:30 PM', '5:00 PM', '5:30 PM',
+                '6:00 PM', '6:30 PM', '7:00 PM', '7:30 PM', '8:00 PM'
+            ];
+
+            slots.forEach(time => {
+                const slot = document.createElement('div');
+                slot.className = 'time-slot';
+                slot.textContent = time;
+                slot.addEventListener('click', () => selectTimeSlot(slot, time));
+                timeSlots.appendChild(slot);
+            });
+        }
+
+        // Generate tables
+        function generateTables() {
+            const tablesLayout = document.querySelector('.tables-layout');
+            const tables = [
+                { id: 1, capacity: 2, available: true },
+                { id: 2, capacity: 4, available: true },
+                { id: 3, capacity: 6, available: false },
+                { id: 4, capacity: 4, available: true },
+                { id: 5, capacity: 2, available: false },
+                { id: 6, capacity: 8, available: true }
+            ];
+
+            tables.forEach(table => {
+                const tableCard = document.createElement('div');
+                tableCard.className = `table-card${table.available ? '' : ' unavailable'}`;
+                tableCard.innerHTML = `
+                    <div class="table-icon">
+                        <svg viewBox="0 0 24 24">
+                            <path fill="currentColor" d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M12,4A8,8 0 0,1 20,12A8,8 0 0,1 12,20A8,8 0 0,1 4,12A8,8 0 0,1 12,4M12,6A6,6 0 0,0 6,12A6,6 0 0,0 12,18A6,6 0 0,0 18,12A6,6 0 0,0 12,6M12,8A4,4 0 0,1 16,12A4,4 0 0,1 12,16A4,4 0 0,1 8,12A4,4 0 0,1 12,8Z" />
+                        </svg>
+                    </div>
+                    <div class="table-status ${table.available ? 'available' : 'unavailable'}"></div>
+                    <div class="table-info">
+                        <div class="table-number">Table ${table.id}</div>
+                        <div class="table-capacity">
+                            <i class="fas fa-user"></i> ${table.capacity} Seats
+                        </div>
+                    </div>
+                `;
+
+                if (table.available) {
+                    tableCard.addEventListener('click', () => selectTable(tableCard, table));
+                }
+                tablesLayout.appendChild(tableCard);
+            });
+        }
+
+        // Selection handlers
+        function selectDate(card, date) {
+            document.querySelectorAll('.date-card').forEach(c => c.classList.remove('selected'));
+            card.classList.add('selected');
+            bookingData.date = date.toLocaleDateString();
+        }
+
+        function selectTimeSlot(slot, time) {
+            document.querySelectorAll('.time-slot').forEach(s => s.classList.remove('selected'));
+            slot.classList.add('selected');
+            bookingData.time = time;
+        }
+
+        function selectTable(card, table) {
+            document.querySelectorAll('.table-card').forEach(t => t.classList.remove('selected'));
+            card.classList.add('selected');
+            bookingData.table = table;
+        }
+
+        // Navigation handlers
+        function updateSteps() {
+            document.querySelectorAll('.booking-step').forEach(step => {
+                const stepNum = parseInt(step.dataset.step);
+                step.classList.remove('active', 'completed');
+                if (stepNum === currentStep) {
+                    step.classList.add('active');
+                } else if (stepNum < currentStep) {
+                    step.classList.add('completed');
+                }
+            });
+
+            document.querySelectorAll('.booking-section').forEach(section => {
+                section.classList.remove('active');
+            });
+            document.getElementById(`step${currentStep}`).classList.add('active');
+
+            // Update navigation buttons
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+            
+            prevBtn.style.display = currentStep === 1 ? 'none' : 'block';
+            nextBtn.textContent = currentStep === totalSteps ? 'Confirm Booking' : 'Next';
+        }
+
+        function validateStep() {
+            switch(currentStep) {
+                case 1:
+                    return bookingData.date && bookingData.time;
+                case 2:
+                    return bookingData.table;
+                case 3:
+                    const form = document.getElementById('guestForm');
+                    if (!form.checkValidity()) {
+                        form.reportValidity();
+                        return false;
+                    }
+                    // Save form data
+                    bookingData.name = form.name.value;
+                    bookingData.email = form.email.value;
+                    bookingData.phone = form.phone.value;
+                    bookingData.guests = form.guests.value;
+                    bookingData.special = form.special.value;
+                    return true;
+                case 4:
+                    return true;
+            }
+        }
+
+        function updateSummary() {
+            document.getElementById('summaryDate').textContent = bookingData.date;
+            document.getElementById('summaryTime').textContent = bookingData.time;
+            document.getElementById('summaryTable').textContent = `Table ${bookingData.table.id} (${bookingData.table.capacity} seats)`;
+            document.getElementById('summaryGuests').textContent = `${bookingData.guests} ${bookingData.guests === '1' ? 'Person' : 'People'}`;
+            document.getElementById('summaryName').textContent = bookingData.name;
+            document.getElementById('summaryContact').textContent = `${bookingData.phone} | ${bookingData.email}`;
+        }
+
+        function confirmBooking() {
+            // Simulate API call
+            const loadingBtn = document.getElementById('nextBtn');
+            loadingBtn.textContent = 'Confirming...';
+            loadingBtn.disabled = true;
+
+            setTimeout(() => {
+                // Store booking data in localStorage
+                localStorage.setItem('lastBooking', JSON.stringify(bookingData));
+                // Redirect to celebration page
+                window.location.href = 'celebration.html';
+            }, 1500);
+        }
+
+        // Event listeners
+        document.getElementById('prevBtn').addEventListener('click', () => {
+            if (currentStep > 1) {
+                currentStep--;
+                updateSteps();
+            }
+        });
+
+        document.getElementById('nextBtn').addEventListener('click', () => {
+            if (validateStep()) {
+                if (currentStep === totalSteps) {
+                    confirmBooking();
+                } else {
+                    currentStep++;
+                    if (currentStep === 4) {
+                        updateSummary();
+                    }
+                    updateSteps();
+                }
+            }
+        });
+
+        // Initialize booking page
+        window.addEventListener('load', () => {
+            generateDates();
+            generateTimeSlots();
+            generateTables();
+            updateSteps();
+        });
+    </script>
+</body>
+</html>

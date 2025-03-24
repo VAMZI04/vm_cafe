@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu - VM Cafe</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">VM Cafe</div>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="menu.html" class="active">Menu</a></li>
+            <li><a href="reservation.html">Book a Table</a></li>
+        </ul>
+    </nav>
+
+    <div class="menu-container">
+        <div class="menu-header">
+            <h1>Our Menu</h1>
+            <div class="menu-toggle">
+                <button class="toggle-btn active" data-type="veg">Vegetarian</button>
+                <button class="toggle-btn" data-type="non-veg">Non-Vegetarian</button>
+            </div>
+        </div>
+
+        <div class="menu-categories">
+            <!-- Starters -->
+            <div class="menu-card">
+                <div class="menu-card-inner">
+                    <div class="menu-card-front">
+                        <img src="https://b.zmtcdn.com/data/pictures/0/305160/573983d490263da8b88ae131b85a1df5_featured_v2.jpg" alt="Starters" class="menu-card-image">
+                        <div class="menu-category-title">Starters</div>
+                    </div>
+                    <div class="menu-card-back">
+                        <div class="menu-card-content">
+                            <h3 class="menu-card-title">Starters</h3>
+                            <ul class="menu-items veg-items">
+                                <img src="https://b.zmtcdn.com/data/pictures/0/305160/573983d490263da8b88ae131b85a1df5_featured_v2.jpg" alt="Starters" class="menu-card-image">
+                                <li class="menu-item">
+                                    <img src="https://res.cloudinary.com/dj6tlm5xx/image/upload/v1648436742/crispy-corn_wvpqtx.jpg" alt="Crispy Corn" class="menu-item-image">
+                                    <span class="menu-item-name">Crispy Corn</span>
+                                    <span class="menu-item-price">₹199</span>
+                                    <button class="add-to-cart"><i class="fas fa-plus"></i></button>
+                                </li>
+                                <li class="menu-item">
+                                    <img src="https://res.cloudinary.com/dj6tlm5xx/image/upload/v1648436742/paneer-65_kxbcwt.jpg" alt="Paneer 65" class="menu-item-image">
+                                    <span class="menu-item-name">Paneer 65</span>
+                                    <span class="menu-item-price">₹249</span>
+                                    <button class="add-to-cart"><i class="fas fa-plus"></i></button>
+                                </li>
+                            </ul>
+                            <ul class="menu-items non-veg-items" style="display: none;">
+                                <img src="https://i.pinimg.com/originals/ac/b9/c0/acb9c0f67efb6b95ae13340be7f9df5d.jpg" alt="Starters" class="menu-card-image">
+                                <li class="menu-item">
+                                    <img src="https://res.cloudinary.com/dj6tlm5xx/image/upload/v1648436742/chicken-65_nw7sjx.jpg" alt="Chicken 65" class="menu-item-image">
+                                    <span class="menu-item-name">Chicken 65</span>
+                                    <span class="menu-item-price">₹299</span>
+                                    <button class="add-to-cart"><i class="fas fa-plus"></i></button>
+                                </li>
+                                <li class="menu-item">
+                                    <img src="https://res.cloudinary.com/dj6tlm5xx/image/upload/v1648436742/fish-fingers_qkkhdu.jpg" alt="Fish Fingers" class="menu-item-image">
+                                    <span class="menu-item-name">Fish Fingers</span>
+                                    <span class="menu-item-price">₹349</span>
+                                    <button class="add-to-cart"><i class="fas fa-plus"></i></button>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Burgers -->
+            <div class="menu-card">
+                <div class="menu-card-inner">
+                    <div class="menu-card-front">
+                        <img src="https://th.bing.com/th/id/R.364257dda9548d77cc5917abd56cd7a3?rik=mIKjx7t9F9fPOg&riu=http%3a%2f%2fdealer-communications.com%2fwp-content%2fuploads%2f2014%2f05%2fhamburger.jpg&ehk=8CFqnWF%2fkSblm5TsfWSKLvXsB1jlg9y9sUg0o4fMCnU%3d&risl=&pid=ImgRaw&r=0" alt="Burgers" class="menu-card-image">
+                        <div class="menu-category-title">Burgers</div>
+                    </div>
+                    <div class="menu-card-back">
+                        <div class="menu-card-content">
+                            <h3 class="menu-card-title">Burgers</h3>
+                            <ul class="menu-items veg-items">
+                                <li class="menu-item">
+                                    <img src="https://res.cloudinary.com/dj6tlm5xx/image/upload/v1648436742/veggie-burger_kzd9dy.jpg" alt="Veggie Supreme" class="menu-item-image">
+                                    <span class="menu-item-name">Veggie Supreme</span>
+                                    <span class="menu-item-price">₹199</span>
+                                    <button class="add-to-cart"><i class="fas fa-plus"></i></button>
+                                </li>
+                                <li class="menu-item">
+                                    <img src="https://res.cloudinary.com/dj6tlm5xx/image/upload/v1648436742/paneer-burger_lxcwxp.jpg" alt="Paneer Tikka Burger" class="menu-item-image">
+                                    <span class="menu-item-name">Paneer Tikka Burger</span>
+                                    <span class="menu-item-price">₹249</span>
+                                    <button class="add-to-cart"><i class="fas fa-plus"></i></button>
+                                </li>
+                            </ul>
+                            <ul class="menu-items non-veg-items" style="display: none;">
+                                <li class="menu-item">
+                                    <img src="https://res.cloudinary.com/dj6tlm5xx/image/upload/v1648436742/chicken-burger_nrcxkz.jpg" alt="Chicken Classic" class="menu-item-image">
+                                    <span class="menu-item-name">Chicken Classic</span>
+                                    <span class="menu-item-price">₹249</span>
+                                    <button class="add-to-cart"><i class="fas fa-plus"></i></button>
+                                </li>
+                                <li class="menu-item">
+                                    <img src="https://res.cloudinary.com/dj6tlm5xx/image/upload/v1648436742/bbq-chicken-burger_qf3wxm.jpg" alt="BBQ Chicken Burger" class="menu-item-image">
+                                    <span class="menu-item-name">BBQ Chicken Burger</span>
+                                    <span class="menu-item-price">₹299</span>
+                                    <button class="add-to-cart"><i class="fas fa-plus"></i></button>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Pizzas -->
+            <div class="menu-card">
+                <div class="menu-card-inner">
+                    <div class="menu-card-front">
+                        <img src="https://images5.alphacoders.com/357/thumb-1920-357914.jpg" alt="Pizzas" class="menu-card-image">
+                        <div class="menu-category-title">Pizzas</div>
+                    </div>
+                    <div class="menu-card-back">
+                        <div class="menu-card-content">
+                            <h3 class="menu-card-title">Pizzas</h3>
+                            <ul class="menu-items veg-items">
+                                <li class="menu-item">
+                                    <span class="menu-item-name">Margherita</span>
+                                    <span class="menu-item-price">₹299</span>
+                                    <button class="add-to-cart"><i class="fas fa-plus"></i></button>
+                                </li>
+                                <li class="menu-item">
+                                    <span class="menu-item-name">Corn & Mushroom</span>
+                                    <span class="menu-item-price">₹349</span>
+                                    <button class="add-to-cart"><i class="fas fa-plus"></i></button>
+                                </li>
+                                <li class="menu-item">
+                                    <span class="menu-item-name">Paneer Tikka Pizza</span>
+                                    <span class="menu-item-price">₹379</span>
+                                    <button class="add-to-cart"><i class="fas fa-plus"></i></button>
+                                </li>
+                                <li class="menu-item">
+                                    <span class="menu-item-name">Veggie Supreme</span>
+                                    <span class="menu-item-price">₹399</span>
+                                    <button class="add-to-cart"><i class="fas fa-plus"></i></button>
+                                </li>
+                                <li class="menu-item">
+                                    <span class="menu-item-name">Garden Fresh</span>
+                                    <span class="menu-item-price">₹349</span>
+                                    <button class="add-to-cart"><i class="fas fa-plus"></i></button>
+                                </li>
+                            </ul>
+                            <ul class="menu-items non-veg-items" style="display: none;">
+                                <li class="menu-item">
+                                    <span class="menu-item-name">BBQ Chicken</span>
+                                    <span class="menu-item-price">₹399</span>
+                                    <button class="add-to-cart"><i class="fas fa-plus"></i></button>
+                                </li>
+                                <li class="menu-item">
+                                    <span class="menu-item-name">Chicken Tikka</span>
+                                    <span class="menu-item-price">₹429</span>
+                                    <button class="add-to-cart"><i class="fas fa-plus"></i></button>
+                                </li>
+                                <li class="menu-item">
+                                    <span class="menu-item-name">Pepperoni</span>
+                                    <span class="menu-item-price">₹449</span>
+                                    <button class="add-to-cart"><i class="fas fa-plus"></i></button>
+                                </li>
+                                <li class="menu-item">
+                                    <span class="menu-item-name">Chicken Supreme</span>
+                                    <span class="menu-item-price">₹469</span>
+                                    <button class="add-to-cart"><i class="fas fa-plus"></i></button>
+                                </li>
+                                <li class="menu-item">
+                                    <span class="menu-item-name">Meat Lovers</span>
+                                    <span class="menu-item-price">₹499</span>
+                                    <button class="add-to-cart"><i class="fas fa-plus"></i></button>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Coffees -->
+            <div class="menu-card">
+                <div class="menu-card-inner">
+                    <div class="menu-card-front">
+                        <img src="https://th.bing.com/th/id/OIP.eFdrwmzBRktpWO-WvwzrGgHaHa?rs=1&pid=ImgDetMain" alt="Coffees" class="menu-card-image">
+                        <div class="menu-category-title">Coffees</div>
+                    </div>
+                    <div class="menu-card-back">
+                        <div class="menu-card-content">
+                            <h3 class="menu-card-title">Coffees</h3>
+                            <ul class="menu-items veg-items">
+                                <li class="menu-item">
+                                    <span class="menu-item-name">Cappuccino</span>
+                                    <span class="menu-item-price">₹179</span>
+                                    <button class="add-to-cart"><i class="fas fa-plus"></i></button>
+                                </li>
+                                <li class="menu-item">
+                                    <span class="menu-item-name">Cafe Latte</span>
+                                    <span class="menu-item-price">₹169</span>
+                                    <button class="add-to-cart"><i class="fas fa-plus"></i></button>
+                                </li>
+                                <li class="menu-item">
+                                    <span class="menu-item-name">Espresso</span>
+                                    <span class="menu-item-price">₹149</span>
+                                    <button class="add-to-cart"><i class="fas fa-plus"></i></button>
+                                </li>
+                                <li class="menu-item">
+                                    <span class="menu-item-name">Cold Coffee</span>
+                                    <span class="menu-item-price">₹189</span>
+                                    <button class="add-to-cart"><i class="fas fa-plus"></i></button>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Brownies -->
+            <div class="menu-card">
+                <div class="menu-card-inner">
+                    <div class="menu-card-front">
+                        <img src="https://th.bing.com/th/id/OIP.M0i5h9sIcxN951VveSEXVAHaFq?rs=1&pid=ImgDetMain" alt="Brownies" class="menu-card-image">
+                        <div class="menu-category-title">Brownies</div>
+                    </div>
+                    <div class="menu-card-back">
+                        <div class="menu-card-content">
+                            <h3 class="menu-card-title">Brownies with Ice Cream</h3>
+                            <ul class="menu-items veg-items">
+                                <li class="menu-item">
+                                    <span class="menu-item-name">Classic Chocolate Brownie</span>
+                                    <span class="menu-item-price">₹249</span>
+                                    <button class="add-to-cart"><i class="fas fa-plus"></i></button>
+                                </li>
+                                <li class="menu-item">
+                                    <span class="menu-item-name">Nutella Brownie</span>
+                                    <span class="menu-item-price">₹279</span>
+                                    <button class="add-to-cart"><i class="fas fa-plus"></i></button>
+                                </li>
+                                <li class="menu-item">
+                                    <span class="menu-item-name">Walnut Brownie</span>
+                                    <span class="menu-item-price">₹269</span>
+                                    <button class="add-to-cart"><i class="fas fa-plus"></i></button>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Cakes -->
+            <div class="menu-card">
+                <div class="menu-card-inner">
+                    <div class="menu-card-front">
+                        <img src="https://th.bing.com/th/id/OIP.kZUHYhayt7xcNPOlapRCnQHaE8?rs=1&pid=ImgDetMain" alt="Cakes" class="menu-card-image">
+                        <div class="menu-category-title">Cakes</div>
+                    </div>
+                    <div class="menu-card-back">
+                        <div class="menu-card-content">
+                            <h3 class="menu-card-title">Cakes</h3>
+                            <ul class="menu-items veg-items">
+                                <li class="menu-item">
+                                    <span class="menu-item-name">Dream Cake</span>
+                                    <span class="menu-item-price">₹399</span>
+                                    <button class="add-to-cart"><i class="fas fa-plus"></i></button>
+                                </li>
+                                <li class="menu-item">
+                                    <span class="menu-item-name">Red Velvet</span>
+                                    <span class="menu-item-price">₹349</span>
+                                    <button class="add-to-cart"><i class="fas fa-plus"></i></button>
+                                </li>
+                                <li class="menu-item">
+                                    <span class="menu-item-name">Black Forest</span>
+                                    <span class="menu-item-price">₹329</span>
+                                    <button class="add-to-cart"><i class="fas fa-plus"></i></button>
+                                </li>
+                                <li class="menu-item">
+                                    <span class="menu-item-name">Chocolate Truffle</span>
+                                    <span class="menu-item-price">₹369</span>
+                                    <button class="add-to-cart"><i class="fas fa-plus"></i></button>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sandwiches -->
+            <div class="menu-card">
+                <div class="menu-card-inner">
+                    <div class="menu-card-front">
+                        <img src="https://th.bing.com/th/id/OIP.k4JMO5bD97BK3hxEHefrmAHaFP?rs=1&pid=ImgDetMain" alt="Sandwiches" class="menu-card-image">
+                        <div class="menu-category-title">Sandwiches</div>
+                    </div>
+                    <div class="menu-card-back">
+                        <div class="menu-card-content">
+                            <h3 class="menu-card-title">Sandwiches</h3>
+                            <ul class="menu-items veg-items">
+                                <li class="menu-item">
+                                    <span class="menu-item-name">Grilled Cheese</span>
+                                    <span class="menu-item-price">₹199</span>
+                                    <button class="add-to-cart"><i class="fas fa-plus"></i></button>
+                                </li>
+                                <li class="menu-item">
+                                    <span class="menu-item-name">Paneer Tikka Sandwich</span>
+                                    <span class="menu-item-price">₹229</span>
+                                    <button class="add-to-cart"><i class="fas fa-plus"></i></button>
+                                </li>
+                            </ul>
+                            <ul class="menu-items non-veg-items" style="display: none;">
+                                <li class="menu-item">
+                                    <span class="menu-item-name">Chicken Club</span>
+                                    <span class="menu-item-price">₹249</span>
+                                    <button class="add-to-cart"><i class="fas fa-plus"></i></button>
+                                </li>
+                                <li class="menu-item">
+                                    <span class="menu-item-name">Grilled Chicken Sandwich</span>
+                                    <span class="menu-item-price">₹239</span>
+                                    <button class="add-to-cart"><i class="fas fa-plus"></i></button>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Mocktails/Mojitos -->
+            <div class="menu-card">
+                <div class="menu-card-inner">
+                    <div class="menu-card-front">
+                        <img src="https://mybartender.com/wp-content/uploads/2023/05/classic-mojito-cocktail-480x480.png" alt="Mocktails" class="menu-card-image">
+                        <div class="menu-category-title">Mocktails & Mojitos</div>
+                    </div>
+                    <div class="menu-card-back">
+                        <div class="menu-card-content">
+                            <h3 class="menu-card-title">Mocktails & Mojitos</h3>
+                            <ul class="menu-items veg-items">
+                                <li class="menu-item">
+                                    <span class="menu-item-name">Virgin Mojito</span>
+                                    <span class="menu-item-price">₹179</span>
+                                    <button class="add-to-cart"><i class="fas fa-plus"></i></button>
+                                </li>
+                                <li class="menu-item">
+                                    <span class="menu-item-name">Blue Lagoon</span>
+                                    <span class="menu-item-price">₹199</span>
+                                    <button class="add-to-cart"><i class="fas fa-plus"></i></button>
+                                </li>
+                                <li class="menu-item">
+                                    <span class="menu-item-name">Fruit Punch</span>
+                                    <span class="menu-item-price">₹189</span>
+                                    <button class="add-to-cart"><i class="fas fa-plus"></i></button>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Pastries -->
+            <div class="menu-card">
+                <div class="menu-card-inner">
+                    <div class="menu-card-front">
+                        <img src="https://th.bing.com/th/id/OIP.M4ZEqM40GNjd2sVouzTwygHaHi?rs=1&pid=ImgDetMain" alt="Pastries" class="menu-card-image">
+                        <div class="menu-category-title">Pastries</div>
+                    </div>
+                    <div class="menu-card-back">
+                        <div class="menu-card-content">
+                            <h3 class="menu-card-title">Pastries</h3>
+                            <ul class="menu-items veg-items">
+                                <li class="menu-item">
+                                    <span class="menu-item-name">Chocolate Pastry</span>
+                                    <span class="menu-item-price">₹129</span>
+                                    <button class="add-to-cart"><i class="fas fa-plus"></i></button>
+                                </li>
+                                <li class="menu-item">
+                                    <span class="menu-item-name">Butterscotch Pastry</span>
+                                    <span class="menu-item-price">₹119</span>
+                                    <button class="add-to-cart"><i class="fas fa-plus"></i></button>
+                                </li>
+                                <li class="menu-item">
+                                    <span class="menu-item-name">Red Velvet Pastry</span>
+                                    <span class="menu-item-price">₹139</span>
+                                    <button class="add-to-cart"><i class="fas fa-plus"></i></button>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Soft Drinks & Falooda -->
+            <div class="menu-card">
+                <div class="menu-card-inner">
+                    <div class="menu-card-front">
+                        <img src="https://th.bing.com/th/id/OIP.CJ88SxNmQPdYgoQCfSH1sgHaI3?rs=1&pid=ImgDetMain" alt="Drinks" class="menu-card-image">
+                        <div class="menu-category-title">Drinks & Falooda</div>
+                    </div>
+                    <div class="menu-card-back">
+                        <div class="menu-card-content">
+                            <h3 class="menu-card-title">Soft Drinks & Falooda</h3>
+                            <ul class="menu-items veg-items">
+                                <li class="menu-item">
+                                    <span class="menu-item-name">Royal Falooda</span>
+                                    <span class="menu-item-price">₹199</span>
+                                    <button class="add-to-cart"><i class="fas fa-plus"></i></button>
+                                </li>
+                                <li class="menu-item">
+                                    <span class="menu-item-name">Dry Fruit Falooda</span>
+                                    <span class="menu-item-price">₹229</span>
+                                    <button class="add-to-cart"><i class="fas fa-plus"></i></button>
+                                </li>
+                                <li class="menu-item">
+                                    <span class="menu-item-name">Soft Drinks</span>
+                                    <span class="menu-item-price">₹79</span>
+                                    <button class="add-to-cart"><i class="fas fa-plus"></i></button>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Cart Modal -->
+    <div id="cartModal" class="cart-modal">
+        <div class="cart-content">
+            <h2>Your Cart <span class="close-cart">&times;</span></h2>
+            <div class="cart-items">
+                <!-- Cart items will be dynamically added here -->
+            </div>
+            <div class="cart-total">
+                <span>Total:</span>
+                <span class="total-amount">₹0</span>
+            </div>
+            <div class="payment-options">
+                <h3>Select Payment Method</h3>
+                <div class="payment-methods">
+                    <label>
+                        <input type="radio" name="payment" value="cash">
+                        <span><i class="fas fa-money-bill-alt"></i> Cash</span>
+                    </label>
+                    <label>
+                        <input type="radio" name="payment" value="phonepe">
+                        <span><i class="fas fa-mobile-alt"></i> PhonePe</span>
+                    </label>
+                    <label>
+                        <input type="radio" name="payment" value="googlepay">
+                        <span><i class="fab fa-google-pay"></i> Google Pay</span>
+                    </label>
+                </div>
+                <button class="checkout-btn" disabled>Proceed to Checkout</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="cart-icon" id="cartIcon">
+        <i class="fas fa-shopping-cart"></i>
+        <span class="cart-count">0</span>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

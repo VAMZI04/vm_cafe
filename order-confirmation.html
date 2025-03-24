@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Confirmation - VM Cafe</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+    <div class="confirmation-container">
+        <div class="confirmation-card">
+            <div class="success-animation">
+                <i class="fas fa-check-circle"></i>
+            </div>
+            <h1>Order Confirmed!</h1>
+            <div class="order-details">
+                <h2>Order Summary</h2>
+                <div id="orderItems" class="order-items"></div>
+                <div class="order-total">
+                    <span>Total Amount:</span>
+                    <span id="orderTotal"></span>
+                </div>
+                <div class="payment-info">
+                    <span>Payment Method:</span>
+                    <span id="paymentMethod"></span>
+                </div>
+            </div>
+            <div class="estimated-time">
+                <i class="fas fa-clock"></i>
+                <span>Estimated Time: 30 minutes</span>
+            </div>
+            <div class="confirmation-buttons">
+                <a href="menu.html" class="btn-secondary">Back to Menu</a>
+                <button onclick="window.print()" class="btn-primary">Print Receipt</button>
+            </div>
+        </div>
+    </div>
+    <script src="confirmation.js"></script>
+</body>
+</html>

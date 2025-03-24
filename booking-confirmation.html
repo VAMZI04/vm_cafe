@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Booking Confirmation - VM Cafe</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+    <nav>
+        <div class="logo">VM Cafe</div>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="menu.html">Menu</a></li>
+            <li><a href="reservation.html">Reservation</a></li>
+        </ul>
+    </nav>
+
+    <div class="confirmation-container">
+        <div class="confirmation-card">
+            <div class="confirmation-icon">
+                <i class="fas fa-check-circle"></i>
+            </div>
+            <h2>Booking Confirmed!</h2>
+            <div class="booking-details">
+                <div class="detail-item">
+                    <i class="fas fa-calendar"></i>
+                    <span id="bookingDate">Date: Loading...</span>
+                </div>
+                <div class="detail-item">
+                    <i class="fas fa-clock"></i>
+                    <span id="bookingTime">Time: Loading...</span>
+                </div>
+                <div class="detail-item">
+                    <i class="fas fa-users"></i>
+                    <span id="bookingGuests">Guests: Loading...</span>
+                </div>
+                <div class="detail-item">
+                    <i class="fas fa-utensils"></i>
+                    <span id="bookingTable">Table: Loading...</span>
+                </div>
+            </div>
+            <p class="confirmation-message">Thank you for choosing VM Cafe. We look forward to serving you!</p>
+            <div class="confirmation-actions">
+                <a href="menu.html" class="btn">View Menu</a>
+                <a href="index.html" class="btn">Return Home</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Get booking details from URL parameters
+        const params = new URLSearchParams(window.location.search);
+        
+        document.getElementById('bookingDate').textContent = 'Date: ' + params.get('date');
+        document.getElementById('bookingTime').textContent = 'Time: ' + params.get('time');
+        document.getElementById('bookingGuests').textContent = 'Guests: ' + params.get('guests');
+        document.getElementById('bookingTable').textContent = 'Table: ' + params.get('table');
+    </script>
+</body>
+</html>

@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login/Sign Up - VM Cafe</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2/dist/sweetalert2.min.js"></script>
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <meta name="google-signin-client_id" content="YOUR_GOOGLE_CLIENT_ID.apps.googleusercontent.com">
+</head>
+<body>
+    <div class="auth-container">
+        <div class="auth-card">
+            <!-- Login Side -->
+            <div class="auth-card-front">
+                <div class="auth-header">
+                    <div class="auth-logo">VM Cafe</div>
+                    <p>Welcome back!</p>
+                </div>
+                
+                <form id="loginForm" class="auth-form">
+                    <div class="form-group">
+                        <label for="loginEmail">Email</label>
+                        <input type="email" id="loginEmail" required placeholder="Enter your email">
+                    </div>
+                    <div class="form-group">
+                        <label for="loginPassword">Password</label>
+                        <input type="password" id="loginPassword" required placeholder="Enter your password">
+                    </div>
+                    <button type="submit" class="auth-btn">Login</button>
+                </form>
+
+                <div class="social-login">
+                    <p>Or continue with</p>
+                    <div class="social-buttons">
+                        <button class="social-btn google">
+                            <i class="fab fa-google"></i>
+                            Google
+                        </button>
+                        <button class="social-btn facebook">
+                            <i class="fab fa-facebook-f"></i>
+                            Facebook
+                        </button>
+                    </div>
+                </div>
+
+                <div class="auth-footer">
+                    <p>Don't have an account? <a href="#" class="flip-trigger">Sign Up</a></p>
+                </div>
+            </div>
+
+            <!-- Sign Up Side -->
+            <div class="auth-card-back">
+                <div class="auth-header">
+                    <div class="auth-logo">VM Cafe</div>
+                    <p>Create Account</p>
+                </div>
+                
+                <form id="signupForm" class="auth-form">
+                    <div class="form-group">
+                        <label for="signupName">Full Name</label>
+                        <input type="text" id="signupName" required placeholder="Enter your name">
+                    </div>
+                    <div class="form-group">
+                        <label for="signupEmail">Email</label>
+                        <input type="email" id="signupEmail" required placeholder="Enter your email">
+                    </div>
+                    <div class="form-group">
+                        <label for="signupPassword">Password</label>
+                        <input type="password" id="signupPassword" required placeholder="Create password">
+                    </div>
+                    <button type="submit" class="auth-btn">Create Account</button>
+                </form>
+
+                <div class="rewards-info">
+                    <div class="rewards-title">
+                        <i class="fas fa-gift"></i> Exclusive Member Benefits
+                    </div>
+                    <ul class="rewards-list">
+                        <li><i class="fas fa-star"></i> 20% off on your first order</li>
+                        <li><i class="fas fa-coffee"></i> Free coffee every 10 visits</li>
+                        <li><i class="fas fa-percent"></i> Daily visitor special discounts</li>
+                        <li><i class="fas fa-crown"></i> VIP table reservations</li>
+                    </ul>
+                    <div class="loyalty-level">
+                        <i class="fas fa-crown loyalty-icon"></i>
+                        <span>Start as Bronze Member</span>
+                    </div>
+                </div>
+
+                <div class="auth-footer">
+                    <p>Already have an account? <a href="#" class="flip-trigger">Login</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/auth.js"></script>
+    <script>
+        // Initialize auth
+        const auth = new Auth();
+
+        // Flip card functionality
+        document.querySelectorAll('.flip-trigger').forEach(trigger => {
+            trigger.addEventListener('click', (e) => {
+                e.preventDefault();
+                document.querySelector('.auth-card').classList.toggle('flipped');
+            });
+        });
+
+        // Google Sign In
+        function onGoogleSignIn(googleUser) {
+            const profile = googleUser.getBasicProfile();
+            const userData = {
+                name: profile.getName(),
+                email: profile.getEmail(),
+                googleId: profile.getId()
+            };
+            
+            try {
+                auth.register(userData);
+                window.location.href = 'menu.html';
+            } catch (error) {
+                // User might already exist, try login
+                auth.login(userData.email, userData.googleId);
+                window.location.href = 'menu.html';
+            }
+        }
+
+        // Facebook Login
+        function initFacebookLogin() {
+            FB.init({
+                appId: 'YOUR_FACEBOOK_APP_ID',
+                cookie: true,
+                xfbml: true,
+                version: 'v12.0'
+            });
+        }
+
+        document.querySelector('.social-btn.facebook').addEventListener('click', () => {
+            FB.login(function(response) {
+                if (response.authResponse) {
+                    FB.api('/me', { fields: 'name, email' }, function(response) {
+                        const userData = {
+                            name: response.name,
+                            email: response.email,
+                            facebookId: response.id
+                        };
+                        
+                        try {
+                            auth.register(userData);
+                            window.location.href = 'menu.html';
+                        } catch (error) {
+                            auth.login(userData.email, userData.facebookId);
+                            window.location.href = 'menu.html';
+                        }
+                    });
+                }
+            }, {scope: 'email'});
+        });
+
+        // Form submissions
+        document.getElementById('loginForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const email = document.getElementById('loginEmail').value;
+            const password = document.getElementById('loginPassword').value;
+            
+            try {
+                await auth.login(email, password);
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Welcome back!',
+                    text: 'Login successful',
+                    showConfirmButton: false,
+                    timer: 1500
+                }).then(() => {
+                    window.location.href = 'menu.html';
+                });
+            } catch (error) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Login Failed',
+                    text: error.message
+                });
+            }
+        });
+
+        document.getElementById('signupForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const userData = {
+                name: document.getElementById('signupName').value,
+                email: document.getElementById('signupEmail').value,
+                password: document.getElementById('signupPassword').value,
+                loyaltyLevel: 'bronze',
+                points: 0
+            };
+            
+            try {
+                await auth.register(userData);
+                await auth.login(userData.email, userData.password);
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Welcome to VM Cafe!',
+                    text: 'Account created successfully. Check the menu for special offers!',
+                    showConfirmButton: false,
+                    timer: 2000
+                }).then(() => {
+                    window.location.href = 'menu.html';
+                });
+            } catch (error) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Registration Failed',
+                    text: error.message
+                });
+            }
+        });
+
+        // Google Sign In Button
+        document.querySelector('.social-btn.google').addEventListener('click', () => {
+            const auth2 = gapi.auth2.getAuthInstance();
+            auth2.signIn().then(onGoogleSignIn);
+        });
+    </script>
+
+    <!-- Facebook SDK -->
+    <div id="fb-root"></div>
+    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js"></script>
+</body>
+</html>

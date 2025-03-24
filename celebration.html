@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Booking Confirmed - VM Cafe</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        .success-page {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            padding: 2rem;
+        }
+
+        .success-card {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            padding: 3rem;
+            text-align: center;
+            max-width: 600px;
+            width: 100%;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .success-icon {
+            width: 100px;
+            height: 100px;
+            background: #2ecc71;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 2rem;
+            position: relative;
+            animation: scaleIn 0.5s ease;
+        }
+
+        .success-icon i {
+            color: white;
+            font-size: 3rem;
+            animation: checkmark 0.5s ease-in-out 0.5s both;
+        }
+
+        .success-title {
+            color: #2c3e50;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            opacity: 0;
+            animation: slideUp 0.5s ease 0.3s forwards;
+        }
+
+        .success-message {
+            color: #666;
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            line-height: 1.6;
+            opacity: 0;
+            animation: slideUp 0.5s ease 0.4s forwards;
+        }
+
+        .booking-details {
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 2rem 0;
+            text-align: left;
+            opacity: 0;
+            animation: slideUp 0.5s ease 0.5s forwards;
+        }
+
+        .detail-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid #dee2e6;
+        }
+
+        .detail-item:last-child {
+            margin-bottom: 0;
+            padding-bottom: 0;
+            border-bottom: none;
+        }
+
+        .detail-label {
+            color: #666;
+            font-weight: 500;
+        }
+
+        .detail-value {
+            color: #2c3e50;
+            font-weight: 600;
+        }
+
+        .success-actions {
+            opacity: 0;
+            animation: slideUp 0.5s ease 0.6s forwards;
+        }
+
+        .action-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 50px;
+            background: #2ecc71;
+            color: white;
+            font-size: 1.1rem;
+            font-weight: 500;
+            text-decoration: none;
+            transition: all 0.3s;
+            margin: 0 0.5rem;
+        }
+
+        .action-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(46,204,113,0.3);
+        }
+
+        .action-button.secondary {
+            background: #e9ecef;
+            color: #2c3e50;
+        }
+
+        @keyframes scaleIn {
+            from {
+                transform: scale(0);
+            }
+            to {
+                transform: scale(1);
+            }
+        }
+
+        @keyframes checkmark {
+            from {
+                transform: scale(0);
+                opacity: 0;
+            }
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideUp {
+            from {
+                transform: translateY(20px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .decoration {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: #2ecc71;
+            opacity: 0.1;
+        }
+    </style>
+</head>
+<body>
+    <div class="success-page">
+        <div class="success-card">
+            <div class="success-icon">
+                <i class="fas fa-check"></i>
+            </div>
+            <h1 class="success-title">Booking Confirmed!</h1>
+            <p class="success-message">Thank you for choosing VM Cafe. Your table has been successfully reserved.</p>
+            
+            <div class="booking-details">
+                <!-- Details will be populated by JavaScript -->
+            </div>
+
+            <div class="success-actions">
+                <a href="index.html" class="action-button secondary">
+                    <i class="fas fa-home"></i>
+                    Return Home
+                </a>
+                <a href="menu.html" class="action-button">
+                    <i class="fas fa-utensils"></i>
+                    View Menu
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Add decorative elements
+        function addDecorations() {
+            const card = document.querySelector('.success-card');
+            for (let i = 0; i < 20; i++) {
+                const decoration = document.createElement('div');
+                decoration.className = 'decoration';
+                decoration.style.left = Math.random() * 100 + '%';
+                decoration.style.top = Math.random() * 100 + '%';
+                decoration.style.transform = `scale(${Math.random() * 3 + 1})`;
+                card.appendChild(decoration);
+            }
+        }
+
+        // Populate booking details
+        function populateBookingDetails() {
+            const bookingData = JSON.parse(localStorage.getItem('lastBooking'));
+            if (!bookingData) return;
+
+            const detailsContainer = document.querySelector('.booking-details');
+            const details = [
+                { label: 'Date', value: bookingData.date },
+                { label: 'Time', value: bookingData.time },
+                { label: 'Table', value: `Table ${bookingData.table.id} (${bookingData.table.capacity} seats)` },
+                { label: 'Guests', value: `${bookingData.guests} ${bookingData.guests === '1' ? 'Person' : 'People'}` },
+                { label: 'Name', value: bookingData.name },
+                { label: 'Contact', value: bookingData.phone }
+            ];
+
+            details.forEach(detail => {
+                const item = document.createElement('div');
+                item.className = 'detail-item';
+                item.innerHTML = `
+                    <span class="detail-label">${detail.label}</span>
+                    <span class="detail-value">${detail.value}</span>
+                `;
+                detailsContainer.appendChild(item);
+            });
+        }
+
+        // Initialize page
+        window.addEventListener('load', () => {
+            addDecorations();
+            populateBookingDetails();
+        });
+    </script>
+</body>
+</html>
